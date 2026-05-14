@@ -1,0 +1,188 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BentoCard from '../components/BentoCard.astro';
+import Chip from '../components/Chip.astro';
+
+const projects = [
+	{ 
+		title: "BentoGrid System", 
+		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB0239BgVJB_stXlbdQfYna0fnLLaVuQPMLooqB1T4XosgawaxKSR3Zb21mESQtLS-zict_tWaLBcZwvRJ6oIq9U8QAOV0GyA3o2l24MmLGVWRtcNMFJWO9V-IFGFmW7rzVo45SEOns1TD6cDOvtne4Hc8yEXXv-HnSJzdxfsj1ScZDTPQGh7_tkIgOhSwWb2a5rKm5qn5V6uoYNRSNkyif4mAPbsmaAxmlE-M7Mm12Y3yRRsBBai73du0Hc8cuuu7ZARPDhPQLNLqW"
+	},
+	{ 
+		title: "Typeform Hybrid", 
+		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDBlsWZnNFRchsDAZxNibeoFa3AnUjtk_7ClzNddNNFQc5DQjqpJNYh8ntDia2kWwitB7UyAkRz8WafmP8ytMpXb-5Rt4SICeuiloVr3kosFz2-oneJeRuUh-l8v3zAdyPUH-k9TNyw7NYKEKEdnCwk6yDBE7h5hWHIUuVdpYakhcPKTzMTk6JwRkTgi_-qJq1qBhgj_BF_Ja1YeYsBqSPxNlRI9y9hQ2xWvue8mlSnhg8XDdGN7WJwLVWykSUoIDlYuesnvdBoapaK"
+	},
+	{ 
+		title: "Minimal Analytics", 
+		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAj-aOYgh-lc0Ib4SpqdBOzPZjxKv4X7_Rg-uha9m9F4pWVCkbzIHTW-vfl3wFZq4fOjmRxoorWXQJbsYWIv3o1qAKiZDb7umI0hLO1Idv7SVPvLrvdmvDxL8kXZZo5ZCLL88eOTcKDauJknmV_TslzB2Yq4NTwQv7ZPXlYYW20gsVYw2xiTer2OMuu-w2So9D-IkyybLaMy-40xHk9tQPHtxNBbZ-7ffWWs_VXK0dgWWxb-IKNUJOqe4DTQIPVLgX1Pr7Ddude09sD"
+	}
+];
+---
+
+<Layout title="akkshaysr - Portfolio">
+	<main class="container">
+		<div class="bento-grid">
+			
+			<!-- ROW 1: Connect & Bio -->
+			<BentoCard span={4} class="row-1-height">
+				<h2 class="headline-serif mb-8">Connect</h2>
+				<div class="social-grid">
+					<div class="social-box"><span class="material-symbols-outlined">code</span></div>
+					<div class="social-box"><span class="material-symbols-outlined">work</span></div>
+					<div class="social-box"><span class="material-symbols-outlined">mail</span></div>
+					<div class="social-box border-dashed"><span class="material-symbols-outlined opacity-30">add</span></div>
+				</div>
+			</BentoCard>
+
+			<BentoCard span={8} class="row-1-height">
+				<h1 class="brand-title mb-6">akkshaysr</h1>
+				<p class="body-lg max-w-2xl">
+					Hello, I'm a designer and developer building structured, playful interfaces. I focus on creating digital environments that are both highly functional and aesthetically pleasing, blending modern minimalism with editorial design principles.
+				</p>
+			</BentoCard>
+
+			<!-- SECTION LABEL -->
+			<div class="section-label">Selected Projects</div>
+
+			<!-- ROW 2: Entirely Projects -->
+			{projects.map((project) => (
+				<BentoCard span={3} noPadding class="project-card">
+					<img src={project.image} alt={project.title} />
+				</BentoCard>
+			))}
+			
+			<BentoCard span={3} class="project-card flex items-center justify-center bg-surface-container">
+				<span class="material-symbols-outlined text-4xl text-on-surface-variant">more_horiz</span>
+			</BentoCard>
+
+			<!-- ROW 3: Latest Article / View All / Resume -->
+			<BentoCard span={6} class="article-card group">
+				<div class="flex flex-col h-full justify-between">
+					<div>
+						<Chip label="Latest Article" />
+						<h3 class="headline-serif mt-6 group-hover:text-accent transition-colors">The Philosophy of Structured Playfulness</h3>
+					</div>
+					<div class="flex justify-between items-end mt-8">
+						<span class="body-md">Oct 24, 2024</span>
+						<span class="material-symbols-outlined text-accent group-hover:translate-x-2 transition-transform">arrow_forward</span>
+					</div>
+				</div>
+			</BentoCard>
+
+			<BentoCard span={3} class="action-card text-center group">
+				<div class="flex flex-col items-center justify-center h-full">
+					<div class="icon-circle mb-4 group-hover:scale-110 transition-transform">
+						<span class="material-symbols-outlined">article</span>
+					</div>
+					<h3 class="headline-serif-sm">View All Articles</h3>
+				</div>
+			</BentoCard>
+
+			<BentoCard span={3} class="action-card text-center group">
+				<div class="flex flex-col items-center justify-center h-full">
+					<div class="icon-circle mb-4 group-hover:scale-110 transition-transform">
+						<span class="material-symbols-outlined">download</span>
+					</div>
+					<h3 class="headline-serif-sm">Download Resume</h3>
+				</div>
+			</BentoCard>
+
+		</div>
+	</main>
+</Layout>
+
+<style>
+	/* Row 1 Fixes */
+	.row-1-height {
+		height: 24rem;
+	}
+
+	.social-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+		width: 140px;
+	}
+
+	.social-box {
+		aspect-ratio: 1/1;
+		background-color: var(--color-surface-container);
+		border-radius: var(--radius-inner);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid transparent;
+	}
+
+	.social-box.border-dashed {
+		background-color: transparent;
+		border: 2px dashed var(--color-border);
+	}
+
+	.social-box span {
+		font-size: 1.5rem;
+		color: var(--color-on-background);
+	}
+
+	/* Row 2 Fixes */
+	.project-card {
+		aspect-ratio: 1/1;
+	}
+
+	.project-card img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
+
+	.project-card:hover img {
+		transform: scale(1.05);
+	}
+
+	/* Row 3 Fixes */
+	.article-card {
+		min-height: 20rem;
+	}
+
+	.action-card {
+		min-height: 20rem;
+	}
+
+	.headline-serif-sm {
+		font-family: var(--font-headline);
+		font-size: 1.5rem;
+		font-weight: 600;
+	}
+
+	.icon-circle {
+		width: 4rem;
+		height: 4rem;
+		background-color: var(--color-surface-container);
+		border-radius: var(--radius-pill);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.icon-circle span {
+		font-size: 1.75rem;
+		color: var(--color-accent);
+	}
+
+	.body-md {
+		color: var(--color-on-surface-variant);
+		font-weight: 500;
+	}
+
+	/* Tablet Fixes */
+	@media (max-width: 1024px) {
+		.bento-grid {
+			grid-template-columns: repeat(6, 1fr);
+		}
+		.span-4 { grid-column: span 3; }
+		.span-8 { grid-column: span 6; }
+		.span-3 { grid-column: span 3; }
+		.span-6 { grid-column: span 6; }
+	}
+</style>

@@ -1,0 +1,109 @@
+:root {
+  /* Colors - Strictly following "Akkshaysr Grid Portfolio" DESIGN.md */
+  --color-primary: #5d5f5f;
+  --color-accent: #4A6278; /* Sophisticated blue-grey for active states */
+  --color-background: #f7f9ff;
+  --color-on-background: #212529; /* Deep charcoal for text */
+  --color-on-surface-variant: #444748;
+  --color-surface: #ffffff;
+  --color-surface-container: #ebeef3;
+  --color-border: #e9ecef; /* Thin outlines */
+  --color-dot: #dee2e6; /* Dotted grid pattern */
+
+  /* Typography */
+  --font-headline: 'Playfair Display', serif;
+  --font-body: 'Geist', sans-serif;
+
+  /* Layout & Spacing */
+  --grid-gutter: 1.5rem;
+  --card-padding: 2rem;
+  --container-max-width: 1200px;
+
+  /* Shapes */
+  --radius-card: 1.5rem;
+  --radius-inner: 1rem;
+  --radius-pill: 9999px;
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  min-height: 100vh;
+  
+  /* The "Blueprint" Background Pattern */
+  background-image: radial-gradient(var(--color-dot) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Layout Utilities */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 6rem 1.5rem;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gutter);
+}
+
+/* Mobile Fallback */
+@media (max-width: 768px) {
+  .bento-grid {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Common Text Styles */
+.brand-title {
+  font-family: var(--font-headline);
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--color-on-background);
+}
+
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-on-surface-variant);
+  grid-column: span 12;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.headline-serif {
+  font-family: var(--font-headline);
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.body-lg {
+  font-size: 1.125rem;
+  color: var(--color-on-surface-variant);
+}
+
+/* Hide scrollbars but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
