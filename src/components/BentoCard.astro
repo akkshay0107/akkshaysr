@@ -3,14 +3,24 @@ interface Props {
   span?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
   class?: string;
   noPadding?: boolean;
+  theme?: 'default' | 'secondary' | 'tertiary';
+  align?: 'start' | 'center' | 'end';
 }
 
-const { span = 4, class: className, noPadding = false } = Astro.props;
+const { 
+  span = 4, 
+  class: className, 
+  noPadding = false,
+  theme = 'default',
+  align = 'start'
+} = Astro.props;
 
 const spanClass = `span-${span}`;
+const themeClass = theme !== 'default' ? `theme-${theme}` : '';
+const alignClass = align !== 'start' ? `align-${align}` : '';
 ---
 
-<div class:list={['bento-card', spanClass, className, { 'no-padding': noPadding }]}>
+<div class:list={['bento-card', spanClass, themeClass, alignClass, className, { 'no-padding': noPadding }]}>
   <slot />
 </div>
 
@@ -24,16 +34,29 @@ const spanClass = `span-${span}`;
     flex-direction: column;
     position: relative;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.2s ease-in-out;
   }
 
-  .bento-card.charcoal-theme {
-    background-color: #2d3135 !important;
-    border: 1px solid #2d3135 !important;
+  .bento-card.theme-secondary {
+    background-color: var(--color-secondary);
+    border: none;
+    color: var(--color-on-secondary);
+  }
+
+  .bento-card.theme-tertiary {
+    background-color: var(--color-tertiary);
+    border: none;
+    color: var(--color-on-tertiary);
+  }
+
+  .bento-card.align-center {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .bento-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.03);
     z-index: 10;
   }

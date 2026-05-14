@@ -10,45 +10,70 @@ interface Props {
 const { projects } = Astro.props;
 ---
 
-<div class="carousel-track scrollbar-hide">
-	{projects.map((project) => (
-		<a class="project-card group" href="#">
-			<div class="project-image">
-				{project.image ? (
-					<img src={project.image} alt={project.title} class="group-hover:scale-105 transition-transform duration-500" />
-				) : (
-					<div class="image-placeholder">
-						<span class="material-symbols-outlined text-4xl text-secondary">image</span>
+<div class="carousel-container">
+	<h2 class="carousel-heading">Selected Projects</h2>
+	<div class="carousel-track scrollbar-hide">
+		{projects.map((project) => (
+			<a class="project-card group" href="#">
+				<div class="project-image">
+					{project.image ? (
+						<img src={project.image} alt={project.title} class="group-hover:scale-105 transition-transform duration-500" />
+					) : (
+						<div class="image-placeholder">
+							<span class="material-symbols-outlined text-4xl text-secondary">image</span>
+						</div>
+					)}
+				</div>
+				<div class="project-details">
+					<div>
+						<h3 class="project-title group-hover:text-primary transition-colors">
+							{project.title}
+						</h3>
+						<p class="project-description">
+							{project.description}
+						</p>
 					</div>
-				)}
+				</div>
+			</a>
+		))}
+		<!-- Extra "More Projects" card as seen in Stitch -->
+		<a class="project-card group" href="#">
+			<div class="project-image bg-surface-container-high">
+				<span class="material-symbols-outlined text-6xl text-secondary">explore</span>
 			</div>
 			<div class="project-details">
-				<h3 class="font-headline-sm text-headline-sm text-on-background mb-2 group-hover:text-primary transition-colors">
-					{project.title}
-				</h3>
-				<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
-					{project.description}
-				</p>
+				<div>
+					<h3 class="project-title group-hover:text-primary transition-colors">
+						More Projects
+					</h3>
+					<p class="project-description">
+						Explore the complete archive of past work and experiments.
+					</p>
+				</div>
 			</div>
 		</a>
-	))}
-	<!-- Extra "More Projects" card as seen in Stitch -->
-	<a class="project-card group" href="#">
-		<div class="project-image flex items-center justify-center bg-surface-container-high">
-			<span class="material-symbols-outlined text-6xl text-secondary">explore</span>
-		</div>
-		<div class="project-details">
-			<h3 class="font-headline-sm text-headline-sm text-on-background mb-2 group-hover:text-primary transition-colors">
-				More Projects
-			</h3>
-			<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
-				Explore the complete archive of past work and experiments.
-			</p>
-		</div>
-	</a>
+	</div>
 </div>
 
 <style>
+	.carousel-container {
+		grid-column: span 12;
+		background-color: var(--color-surface-container-low);
+		border-radius: 3rem;
+		padding: 2rem;
+	}
+
+	.carousel-heading {
+		font-family: var(--font-body);
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: var(--color-secondary);
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		margin-bottom: 1rem;
+		padding: 0 1rem;
+	}
+
 	.carousel-track {
 		display: flex;
 		overflow-x: auto;
@@ -94,26 +119,31 @@ const { projects } = Astro.props;
 	.project-image img {
 		width: 100%;
 		height: 100%;
-		object-cover: cover;
+		object-fit: cover;
 	}
 
 	.project-details {
 		padding: 1.5rem;
 		background: #ffffff;
 		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 
-	.font-headline-sm {
+	.project-title {
 		font-family: var(--font-headline);
 		font-size: 1.5rem;
 		font-weight: 600;
-		line-height: 1.4;
+		color: var(--color-on-background);
+		margin-bottom: 0.5rem;
 	}
 
-	.text-on-background { color: var(--color-on-background); }
-	.text-on-surface-variant { color: var(--color-on-surface-variant); }
-	
-	.line-clamp-2 {
+	.project-description {
+		font-family: var(--font-body);
+		font-size: 1rem;
+		color: var(--color-on-surface-variant);
+		line-height: 1.6;
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;

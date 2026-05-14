@@ -1,14 +1,22 @@
 :root {
-  /* Colors */
+  /* Colors - Based on Stitch Design Tokens */
   --color-primary: #5d5f5f;
-  --color-accent: #4A6278;
+  --color-secondary: #5c5f61;
+  --color-tertiary: #5d5f5f;
   --color-background: #f7f9ff;
-  --color-on-background: #181c20; /* Updated for deeper contrast */
+  --color-on-background: #181c20;
+  --color-on-surface: #181c20;
   --color-on-surface-variant: #444748;
   --color-surface: #ffffff;
   --color-surface-container: #ebeef3;
-  --color-border: #e9ecef;
-  --color-dot: #dee2e6;
+  --color-surface-container-low: #f1f4f9;
+  --color-surface-container-high: #e5e8ee;
+  --color-surface-container-highest: #e0e3e8;
+  --color-border: #e0e3e8;
+  --color-grid: #c4c7c8;
+  
+  --color-on-secondary: #ffffff;
+  --color-on-tertiary: #ffffff;
 
   /* Typography */
   --font-headline: 'Playfair Display', serif;
@@ -21,7 +29,7 @@
 
   /* Shapes */
   --radius-card: 1.5rem;
-  --radius-inner: 0.75rem; /* Tighter inner radius */
+  --radius-inner: 0.75rem;
   --radius-pill: 9999px;
 }
 
@@ -38,7 +46,7 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   min-height: 100vh;
-  background-image: radial-gradient(var(--color-dot) 1px, transparent 1px);
+  background-image: radial-gradient(var(--color-grid) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
