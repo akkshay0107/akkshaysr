@@ -25,7 +25,7 @@ const projects = [
 			
 			<!-- ROW 1: Connect & Bio -->
 			<BentoCard span={4} class="row-1-height">
-				<h2 class="headline-serif mb-8">Connect</h2>
+				<h2 class="section-label-geist mb-8">Connect</h2>
 				<div class="social-grid">
 					<div class="social-box"><span class="material-symbols-outlined">code</span></div>
 					<div class="social-box"><span class="material-symbols-outlined">work</span></div>
@@ -42,18 +42,14 @@ const projects = [
 			</BentoCard>
 
 			<!-- SECTION LABEL -->
-			<div class="section-label">Selected Projects</div>
+			<div class="section-label-geist mb-6">Selected Projects</div>
 
 			<!-- ROW 2: Entirely Projects -->
 			{projects.map((project) => (
-				<BentoCard span={3} noPadding class="project-card">
-					<img src={project.image} alt={project.title} />
+				<BentoCard span={4} noPadding class="project-card">
+					<img src={project.image} alt={project.title} class="project-img" />
 				</BentoCard>
 			))}
-			
-			<BentoCard span={3} class="project-card flex items-center justify-center bg-surface-container">
-				<span class="material-symbols-outlined text-4xl text-on-surface-variant">more_horiz</span>
-			</BentoCard>
 
 			<!-- ROW 3: Latest Article / View All / Resume -->
 			<BentoCard span={6} class="article-card group">
@@ -69,29 +65,40 @@ const projects = [
 				</div>
 			</BentoCard>
 
-			<BentoCard span={3} class="action-card text-center group">
+			<BentoCard span={3} class="action-card charcoal-theme text-center group cursor-pointer">
 				<div class="flex flex-col items-center justify-center h-full">
 					<div class="icon-circle mb-4 group-hover:scale-110 transition-transform">
-						<span class="material-symbols-outlined">article</span>
+						<span class="material-symbols-outlined text-white">article</span>
 					</div>
-					<h3 class="headline-serif-sm">View All Articles</h3>
+					<h3 class="headline-serif-sm text-white">View All Articles</h3>
 				</div>
 			</BentoCard>
 
-			<BentoCard span={3} class="action-card text-center group">
+			<BentoCard span={3} class="action-card charcoal-theme text-center group cursor-pointer">
 				<div class="flex flex-col items-center justify-center h-full">
 					<div class="icon-circle mb-4 group-hover:scale-110 transition-transform">
-						<span class="material-symbols-outlined">download</span>
+						<span class="material-symbols-outlined text-white">download</span>
 					</div>
-					<h3 class="headline-serif-sm">Download Resume</h3>
+					<h3 class="headline-serif-sm text-white">Download Resume</h3>
 				</div>
 			</BentoCard>
+
 
 		</div>
 	</main>
 </Layout>
 
 <style>
+	.section-label-geist {
+		font-family: var(--font-body);
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		color: var(--color-on-surface-variant);
+		grid-column: span 12;
+	}
+
 	/* Row 1 Fixes */
 	.row-1-height {
 		height: 24rem;
@@ -145,8 +152,13 @@ const projects = [
 		min-height: 20rem;
 	}
 
-	.action-card {
-		min-height: 20rem;
+	.charcoal-theme {
+		background-color: #212529 !important;
+		border: 1px solid #212529 !important;
+	}
+
+	.charcoal-theme .icon-circle {
+		background-color: rgba(255, 255, 255, 0.1);
 	}
 
 	.headline-serif-sm {
