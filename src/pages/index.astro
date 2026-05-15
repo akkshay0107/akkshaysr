@@ -1,206 +1,96 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import BentoCard from '../components/BentoCard.astro';
-import Chip from '../components/Chip.astro';
-import ProjectCarousel from '../components/ProjectCarousel.astro';
-
-const projects = [
-	{ 
-		title: "BentoGrid System", 
-		description: "A responsive, modular CSS framework based on mathematical grid principles.",
-		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB0239BgVJB_stXlbdQfYna0fnLLaVuQPMLooqB1T4XosgawaxKSR3Zb21mESQtLS-zict_tWaLBcZwvRJ6oIq9U8QAOV0GyA3o2l24MmLGVWRtcNMFJWO9V-IFGFmW7rzVo45SEOns1TD6cDOvtne4Hc8yEXXv-HnSJzdxfsj1ScZDTPQGh7_tkIgOhSwWb2a5rKm5qn5V6uoYNRSNkyif4mAPbsmaAxmlE-M7Mm12Y3yRRsBBai73du0Hc8cuuu7ZARPDhPQLNLqW"
-	},
-	{ 
-		title: "Typeform Hybrid", 
-		description: "Exploring high-contrast typography within utilitarian form structures.",
-		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDBlsWZnNFRchsDAZxNibeoFa3AnUjtk_7ClzNddNNFQc5DQjqpJNYh8ntDia2kWwitB7UyAkRz8WafmP8ytMpXb-5Rt4SICeuiloVr3kosFz2-oneJeRuUh-l8v3zAdyPUH-k9TNyw7NYKEKEdnCwk6yDBE7h5hWHIUuVdpYakhcPKTzMTk6JwRkTgi_-qJq1qBhgj_BF_Ja1YeYsBqSPxNlRI9y9hQ2xWvue8mlSnhg8XDdGN7WJwLVWykSUoIDlYuesnvdBoapaK"
-	},
-	{ 
-		title: "Minimal Analytics", 
-		description: "A dashboard that reduces noise through tonal separation and thin outlines.",
-		image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAj-aOYgh-lc0Ib4SpqdBOzPZjxKv4X7_Rg-uha9m9F4pWVCkbzIHTW-vfl3wFZq4fOjmRxoorWXQJbsYWIv3o1qAKiZDb7umI0hLO1Idv7SVPvLrvdmvDxL8kXZZo5ZCLL88eOTcKDauJknmV_TslzB2Yq4NTwQv7ZPXlYYW20gsVYw2xiTer2OMuu-w2So9D-IkyybLaMy-40xHk9tQPHtxNBbZ-7ffWWs_VXK0dgWWxb-IKNUJOqe4DTQIPVLgX1Pr7Ddude09sD"
-	}
-];
-
-const socials = [
-	{ 
-		label: "GitHub", 
-		url: "#",
-		svg: `<svg viewBox="0 0 24 24" fill="#000000" stroke="none"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`
-	},
-	{ 
-		label: "LinkedIn", 
-		url: "#",
-		svg: `<svg viewBox="0 0 24 24" fill="#0A66C2" stroke="none"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`
-	},
-	{ 
-		label: "Email", 
-		url: "#",
-		svg: `<svg viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`
-	}
-];
 ---
 
-<Layout title="akkshaysr - Portfolio">
-	<main class="container">
-		<div class="bento-grid">
-			
-			<!-- ROW 1: Connect & Bio -->
-			<BentoCard span={3} class="connect-card">
-				<h2 class="label-caps connect-title">Connect</h2>
-				<div class="social-grid">
-					{socials.map((social) => (
-						<a href={social.url} aria-label={social.label} class="social-link group">
-							<div class="social-icon">
-								<Fragment set:html={social.svg} />
-							</div>
-						</a>
-					))}
-				</div>
-			</BentoCard>
+<Layout title="Akkshay | Developer Portfolio">
+  <main class="w-full max-w-[1600px] mx-auto h-screen border-x border-white/10 relative bg-[#0a0a0a] flex flex-col overflow-y-auto overflow-x-hidden">
+    <div class="p-6 md:p-8 lg:p-10 flex flex-col space-y-12 md:space-y-16">
+      <header class="flex flex-col space-y-8">
+        <div>
+          <h1 class="text-4xl md:text-5xl lg:text-7xl font-light mb-6 tracking-tight">Hi, I'm Akkshay</h1>
+          <div class="border border-white/10 p-5 md:p-8 bg-white/[0.02] max-w-2xl" data-purpose="bio-container">
+            <p class="text-base md:text-xl font-light leading-relaxed text-zinc-400 font-body">
+              A developer focused on crafting clean, performant, and aesthetic digital experiences. Specializing in minimal design systems and robust backend architectures.
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-4" data-purpose="social-links">
+          <a class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300 group" href="#" title="GitHub">
+            <i class="fa-brands fa-github text-lg"></i>
+          </a>
+          <a class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300 group" href="#" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in text-lg"></i>
+          </a>
+          <a class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300 group" href="#" title="Mail">
+            <i class="fa-regular fa-envelope text-lg"></i>
+          </a>
+        </div>
+      </header>
 
-			<BentoCard span={9}>
-				<h1 class="brand-title mb-4">akkshaysr</h1>
-				<p class="body-lg max-w-2xl">
-					Hello, I'm a designer and developer building structured, playful interfaces. I focus on creating digital environments that are both highly functional and aesthetically pleasing, blending modern minimalism with editorial design principles.
-				</p>
-			</BentoCard>
+      <section class="flex flex-col" id="projects-section">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="h-[1px] bg-white/10 flex-grow"></div>
+          <h2 class="text-[10px] tracking-[0.5em] font-mono font-light uppercase text-zinc-500">PROJECTS</h2>
+          <div class="h-[1px] bg-white/10 flex-grow"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="relative group aspect-[4/3] border border-white/10 overflow-hidden hover-lift bg-zinc-900" data-purpose="project-card">
+            <img alt="Aura Archive" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAhHpGlvOuoT5tDq25BOaGS802tplE-jZ-DlHhXkl7lntvh4bK7thPhwap8sGnJPom1999TydLyewbL1icArKJYjj7e79OsMRjxdnc646w1QIVKxyeI0bkIVEaBm4CgJcJGkjcM23-0Q5YN_ePiIOps8Ajjcz7xHiaNOmzXtdiSjIAEM4xvRQYRY3qOsQQKavADBzd9l8DU9AUm9PsBAJd_igW4J6KakGgqxgdC-M5xolsTTfnnHPB9aK07QcrNlYYpdxDny2FmaEv"/>
+            <div class="absolute bottom-0 left-0 right-0 p-5 frosted-glass flex flex-col justify-end translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
+              <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase mb-2 text-white">AURA ARCHIVE</h3>
+              <p class="font-display italic text-sm text-white/80 leading-snug">Minimalist CMS built for creative portfolios.</p>
+            </div>
+          </div>
+          <div class="relative group aspect-[4/3] border border-white/10 overflow-hidden hover-lift bg-zinc-900" data-purpose="project-card">
+            <img alt="Nexus API" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAutSPW7nAfRsP8ze9xvkkK_R9ZC_BqOVjnuAYyT6Dolm-9kkSV277VcTtIfS9xsThvCrxcJrEg_tPFVgQyBTgCsp26e76GgVamL8Ank5Ug3cR8m7jBZH_Uo3qcGpQYvAEFCfjyEa-IoeBvVTP4sbuS2UtIy54Iag-7i4I8MGxmcGybqCcZR_sTaJk3jGQMqdN-H7PI1hWXYexeVgDe16Wl6Pdm6ewL_2yXzXwLwO-PzOkCsqWiRfU0FGe3P7NfkdZbHpq2PuDAdNrk"/>
+            <div class="absolute bottom-0 left-0 right-0 p-5 frosted-glass flex flex-col justify-end translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
+              <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase mb-2 text-white">NEXUS API</h3>
+              <p class="font-display italic text-sm text-white/80 leading-snug">Distributed GraphQL engine for edge sync.</p>
+            </div>
+          </div>
+          <div class="relative group aspect-[4/3] border border-white/10 overflow-hidden hover-lift bg-zinc-900" data-purpose="project-card">
+            <img alt="Void Canvas" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8mivUh3TKOYbaJadUlug2zFTHS1kfNoA3EMhKkRUpYnGINs5hupYEvFZDdW6ypz7zwncLLeGdFeVJJ5aDXTHcFjDGWA8wvJC9gsVH9bojtEoQr6LYBtzKxr3X2dLXaZSgbg6KXceKbYbClzWYcuyAZ20sQdbe-Kb7CFmk1ILc9VvfA1akohz2PeETOYbNL6QnjHME_sSgwwMuxrRM-w_dzmnLKXQsLaRGCwP_D5LfzDv_eQUaLTenXoCRjgqNbGgKzSyQz5dQulDh"/>
+            <div class="absolute bottom-0 left-0 right-0 p-5 frosted-glass flex flex-col justify-end translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
+              <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase mb-2 text-white">VOID CANVAS</h3>
+              <p class="font-display italic text-sm text-white/80 leading-snug">WebGL app for complex procedural textures.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-			<!-- ROW 2: Projects Carousel -->
-			<ProjectCarousel projects={projects} />
-
-			<!-- ROW 3: Latest Article / View All / Resume -->
-			<BentoCard span={6} class="group cursor-pointer">
-				<div class="flex flex-col h-full justify-between">
-					<div>
-						<Chip label="Latest Article" />
-						<h3 class="headline-serif mt-4 group-hover:text-primary transition-colors">The Philosophy of Structured Playfulness</h3>
-					</div>
-					<div class="flex justify-between items-end mt-8">
-						<span class="body-md text-on-surface-variant">Oct 24, 2024</span>
-						<span class="material-symbols-outlined text-primary">arrow_forward</span>
-					</div>
-				</div>
-			</BentoCard>
-
-			<BentoCard span={3} theme="secondary" align="center" class="group cursor-pointer">
-				<div class="icon-circle-outline mb-4 group-hover:scale-110 transition-transform">
-					<span class="material-symbols-outlined text-3xl">article</span>
-				</div>
-				<h3 class="headline-serif-sm">View All Articles</h3>
-			</BentoCard>
-
-			<BentoCard span={3} theme="tertiary" align="center" class="group cursor-pointer">
-				<div class="icon-circle-outline mb-4 group-hover:scale-110 transition-transform">
-					<span class="material-symbols-outlined text-3xl">download</span>
-				</div>
-				<h3 class="headline-serif-sm">Download Resume</h3>
-			</BentoCard>
-
-		</div>
-	</main>
+      <section class="flex flex-col pb-12" id="articles-section">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="h-[1px] bg-white/10 flex-grow"></div>
+          <h2 class="text-[10px] tracking-[0.5em] font-mono font-light uppercase text-zinc-500">ARTICLES</h2>
+          <div class="h-[1px] bg-white/10 flex-grow"></div>
+        </div>
+        <div class="max-w-4xl mx-auto w-full space-y-px bg-white/10 border border-white/10 overflow-hidden">
+          <a class="group flex items-center justify-between p-6 bg-[#0a0a0a] hover:bg-white/[0.03] transition-colors" href="#">
+            <div class="flex flex-col gap-1">
+              <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Oct 2023</span>
+              <h3 class="font-display text-xl text-zinc-300 group-hover:text-white transition-colors">The Aesthetic of Minimal Code</h3>
+            </div>
+            <i class="fa-solid fa-arrow-right-long text-zinc-600 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
+          </a>
+          <a class="group flex items-center justify-between p-6 bg-[#0a0a0a] hover:bg-white/[0.03] transition-colors" href="#">
+            <div class="flex flex-col gap-1">
+              <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Sep 2023</span>
+              <h3 class="font-display text-xl text-zinc-300 group-hover:text-white transition-colors">Distributed Systems for Solo Devs</h3>
+            </div>
+            <i class="fa-solid fa-arrow-right-long text-zinc-600 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
+          </a>
+          <a class="group flex items-center justify-between p-6 bg-[#0a0a0a] hover:bg-white/[0.03] transition-colors" href="#">
+            <div class="flex flex-col gap-1">
+              <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Aug 2023</span>
+              <h3 class="font-display text-xl text-zinc-300 group-hover:text-white transition-colors">Building the Obsidian Archive</h3>
+            </div>
+            <i class="fa-solid fa-arrow-right-long text-zinc-600 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
+          </a>
+        </div>
+        <div class="mt-8 text-center">
+          <a class="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.3em] hover:text-white transition-colors" href="#">Read All Articles</a>
+        </div>
+      </section>
+    </div>
+  </main>
 </Layout>
-
-<style>
-	.connect-card {
-		padding-top: 1.5rem;
-	}
-
-	.connect-title {
-		color: #000000;
-		opacity: 1;
-		margin-bottom: 1.5rem;
-	}
-
-	.social-grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 1.5rem;
-	}
-
-	.social-link {
-		text-decoration: none;
-	}
-
-	.social-icon {
-		width: 5rem;
-		height: 5rem;
-		background-color: var(--color-surface-container);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-inner);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		transition: all 0.2s ease-in-out;
-		color: #000000;
-	}
-
-	.social-link:hover .social-icon {
-		background-color: var(--color-surface-container-high);
-		border-color: #000000;
-		transform: translateY(-2px);
-	}
-
-	.social-icon svg {
-		width: 1.375rem;
-		height: 1.375rem;
-	}
-
-	.brand-title {
-		font-family: var(--font-headline);
-		font-size: 4rem;
-		font-weight: 700;
-		letter-spacing: -0.02em;
-		line-height: 1.1;
-		color: var(--color-primary);
-	}
-
-	.headline-serif {
-		font-family: var(--font-headline);
-		font-size: 2rem;
-		font-weight: 600;
-		line-height: 1.3;
-	}
-
-	.headline-serif-sm {
-		font-family: var(--font-headline);
-		font-size: 1.5rem;
-		font-weight: 600;
-	}
-
-	.icon-circle-outline {
-		width: 4rem;
-		height: 4rem;
-		background-color: rgba(0, 0, 0, 0.2);
-		border-radius: var(--radius-pill);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		color: #ffffff;
-	}
-
-	.body-lg {
-		font-size: 1.125rem;
-		color: var(--color-on-surface-variant);
-	}
-
-	/* Tablet Fixes */
-	@media (max-width: 1024px) {
-		.bento-grid {
-			grid-template-columns: repeat(6, 1fr);
-		}
-		.span-4 { grid-column: span 3; }
-		.span-8 { grid-column: span 6; }
-		.span-3 { grid-column: span 3; }
-		.span-6 { grid-column: span 6; }
-	}
-
-	@media (max-width: 768px) {
-		.bento-grid {
-			grid-template-columns: 1fr;
-		}
-		.brand-title {
-			font-size: 2.5rem;
-		}
-	}
-</style>
