@@ -1,19 +1,19 @@
 :root {
   /* Colors - Based on Stitch Design Tokens */
-  --color-primary: #5d5f5f;
+  --color-primary: #000000;
   --color-secondary: #5c5f61;
   --color-tertiary: #5d5f5f;
   --color-background: #f7f9ff;
-  --color-on-background: #181c20;
-  --color-on-surface: #181c20;
-  --color-on-surface-variant: #444748;
+  --color-on-background: #000000;
+  --color-on-surface: #000000;
+  --color-on-surface-variant: #000000;
   --color-surface: #ffffff;
   --color-surface-container: #ebeef3;
   --color-surface-container-low: #f1f4f9;
   --color-surface-container-high: #e5e8ee;
   --color-surface-container-highest: #e0e3e8;
   --color-border: #e0e3e8;
-  --color-grid: #c4c7c8;
+  --color-grid: #000000;
   
   --color-on-secondary: #ffffff;
   --color-on-tertiary: #ffffff;
@@ -68,7 +68,7 @@ body {
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.1;
-  color: #181c20;
+  color: #000000;
 }
 
 .headline-serif {
@@ -81,7 +81,7 @@ body {
 
 .body-lg {
   font-size: 1.125rem;
-  color: #444748;
+  color: #000000;
   line-height: 1.6;
 }
 
@@ -91,5 +91,5 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #747878;
+  color: #000000;
 }
