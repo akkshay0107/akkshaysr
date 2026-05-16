@@ -1,0 +1,17 @@
+---
+interface Props {
+  date: string;
+  title: string;
+  href: string;
+}
+
+const { date, title, href } = Astro.props;
+---
+
+<a class="group flex items-center justify-between p-6 bg-[#0a0a0a] hover:bg-white/[0.03] transition-colors" href={href}>
+  <div class="flex flex-col gap-1">
+    <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">{date}</span>
+    <h3 class="font-display text-xl text-zinc-300 group-hover:text-white transition-colors">{title}</h3>
+  </div>
+  <i class="fa-solid fa-arrow-right-long text-zinc-600 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
+</a>

@@ -1,9 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ArticleItem from '../components/ArticleItem.astro';
+import SocialButton from '../components/SocialButton.astro';
 ---
 
-<Layout title="Akkshay | Developer Portfolio">
-  <main class="w-full max-w-[1600px] mx-auto h-screen border-x border-white/10 relative bg-[#0a0a0a] flex flex-col overflow-y-auto overflow-x-hidden">
+<Layout title="akkshay's website">
+  <main class="w-full max-w-[1600px] mx-auto min-h-screen border-x border-white/10 relative bg-[#0a0a0a] flex flex-col">
     <div class="p-6 md:p-8 lg:p-10 flex flex-col space-y-12 md:space-y-16">
       <header class="flex flex-col space-y-8">
         <div>
@@ -15,15 +18,9 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
         <div class="flex flex-wrap gap-4" data-purpose="social-links">
-          <a class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300 group" href="#" title="GitHub">
-            <i class="fa-brands fa-github text-lg"></i>
-          </a>
-          <a class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300 group" href="#" title="LinkedIn">
-            <i class="fa-brands fa-linkedin-in text-lg"></i>
-          </a>
-          <a class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300 group" href="#" title="Mail">
-            <i class="fa-regular fa-envelope text-lg"></i>
-          </a>
+          <SocialButton href="https://github.com/akkshay0107" title="GitHub" iconClass="fa-brands fa-github" />
+          <SocialButton href="https://linkedin.com/in/akkshaysr" title="LinkedIn" iconClass="fa-brands fa-linkedin-in" />
+          <SocialButton href="mailto:akkshaysr0107@gmail.com" title="Mail" iconClass="fa-regular fa-envelope" />
         </div>
       </header>
 
@@ -34,27 +31,24 @@ import Layout from '../layouts/Layout.astro';
           <div class="h-[1px] bg-white/10 flex-grow"></div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="relative group aspect-[4/3] border border-white/10 overflow-hidden hover-lift bg-zinc-900" data-purpose="project-card">
-            <img alt="Aura Archive" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAhHpGlvOuoT5tDq25BOaGS802tplE-jZ-DlHhXkl7lntvh4bK7thPhwap8sGnJPom1999TydLyewbL1icArKJYjj7e79OsMRjxdnc646w1QIVKxyeI0bkIVEaBm4CgJcJGkjcM23-0Q5YN_ePiIOps8Ajjcz7xHiaNOmzXtdiSjIAEM4xvRQYRY3qOsQQKavADBzd9l8DU9AUm9PsBAJd_igW4J6KakGgqxgdC-M5xolsTTfnnHPB9aK07QcrNlYYpdxDny2FmaEv"/>
-            <div class="absolute bottom-0 left-0 right-0 p-5 frosted-glass flex flex-col justify-end translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
-              <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase mb-2 text-white">AURA ARCHIVE</h3>
-              <p class="font-display italic text-sm text-white/80 leading-snug">Minimalist CMS built for creative portfolios.</p>
-            </div>
-          </div>
-          <div class="relative group aspect-[4/3] border border-white/10 overflow-hidden hover-lift bg-zinc-900" data-purpose="project-card">
-            <img alt="Nexus API" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAutSPW7nAfRsP8ze9xvkkK_R9ZC_BqOVjnuAYyT6Dolm-9kkSV277VcTtIfS9xsThvCrxcJrEg_tPFVgQyBTgCsp26e76GgVamL8Ank5Ug3cR8m7jBZH_Uo3qcGpQYvAEFCfjyEa-IoeBvVTP4sbuS2UtIy54Iag-7i4I8MGxmcGybqCcZR_sTaJk3jGQMqdN-H7PI1hWXYexeVgDe16Wl6Pdm6ewL_2yXzXwLwO-PzOkCsqWiRfU0FGe3P7NfkdZbHpq2PuDAdNrk"/>
-            <div class="absolute bottom-0 left-0 right-0 p-5 frosted-glass flex flex-col justify-end translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
-              <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase mb-2 text-white">NEXUS API</h3>
-              <p class="font-display italic text-sm text-white/80 leading-snug">Distributed GraphQL engine for edge sync.</p>
-            </div>
-          </div>
-          <div class="relative group aspect-[4/3] border border-white/10 overflow-hidden hover-lift bg-zinc-900" data-purpose="project-card">
-            <img alt="Void Canvas" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8mivUh3TKOYbaJadUlug2zFTHS1kfNoA3EMhKkRUpYnGINs5hupYEvFZDdW6ypz7zwncLLeGdFeVJJ5aDXTHcFjDGWA8wvJC9gsVH9bojtEoQr6LYBtzKxr3X2dLXaZSgbg6KXceKbYbClzWYcuyAZ20sQdbe-Kb7CFmk1ILc9VvfA1akohz2PeETOYbNL6QnjHME_sSgwwMuxrRM-w_dzmnLKXQsLaRGCwP_D5LfzDv_eQUaLTenXoCRjgqNbGgKzSyQz5dQulDh"/>
-            <div class="absolute bottom-0 left-0 right-0 p-5 frosted-glass flex flex-col justify-end translate-y-1 group-hover:translate-y-0 transition-transform duration-500">
-              <h3 class="text-[10px] font-mono tracking-[0.2em] uppercase mb-2 text-white">VOID CANVAS</h3>
-              <p class="font-display italic text-sm text-white/80 leading-snug">WebGL app for complex procedural textures.</p>
-            </div>
-          </div>
+          <ProjectCard
+            title="AURA ARCHIVE"
+            description="Minimalist CMS built for creative portfolios."
+            image="https://lh3.googleusercontent.com/aida-public/AB6AXuAAhHpGlvOuoT5tDq25BOaGS802tplE-jZ-DlHhXkl7lntvh4bK7thPhwap8sGnJPom1999TydLyewbL1icArKJYjj7e79OsMRjxdnc646w1QIVKxyeI0bkIVEaBm4CgJcJGkjcM23-0Q5YN_ePiIOps8Ajjcz7xHiaNOmzXtdiSjIAEM4xvRQYRY3qOsQQKavADBzd9l8DU9AUm9PsBAJd_igW4J6KakGgqxgdC-M5xolsTTfnnHPB9aK07QcrNlYYpdxDny2FmaEv"
+            alt="Aura Archive"
+          />
+          <ProjectCard
+            title="NEXUS API"
+            description="Distributed GraphQL engine for edge sync."
+            image="https://lh3.googleusercontent.com/aida-public/AB6AXuAutSPW7nAfRsP8ze9xvkkK_R9ZC_BqOVjnuAYyT6Dolm-9kkSV277VcTtIfS9xsThvCrxcJrEg_tPFVgQyBTgCsp26e76GgVamL8Ank5Ug3cR8m7jBZH_Uo3qcGpQYvAEFCfjyEa-IoeBvVTP4sbuS2UtIy54Iag-7i4I8MGxmcGybqCcZR_sTaJk3jGQMqdN-H7PI1hWXYexeVgDe16Wl6Pdm6ewL_2yXzXwLwO-PzOkCsqWiRfU0FGe3P7NfkdZbHpq2PuDAdNrk"
+            alt="Nexus API"
+          />
+          <ProjectCard
+            title="VOID CANVAS"
+            description="WebGL app for complex procedural textures."
+            image="https://lh3.googleusercontent.com/aida-public/AB6AXuC8mivUh3TKOYbaJadUlug2zFTHS1kfNoA3EMhKkRUpYnGINs5hupYEvFZDdW6ypz7zwncLLeGdFeVJJ5aDXTHcFjDGWA8wvJC9gsVH9bojtEoQr6LYBtzKxr3X2dLXaZSgbg6KXceKbYbClzWYcuyAZ20sQdbe-Kb7CFmk1ILc9VvfA1akohz2PeETOYbNL6QnjHME_sSgwwMuxrRM-w_dzmnLKXQsLaRGCwP_D5LfzDv_eQUaLTenXoCRjgqNbGgKzSyQz5dQulDh"
+            alt="Void Canvas"
+          />
         </div>
       </section>
 
@@ -65,27 +59,21 @@ import Layout from '../layouts/Layout.astro';
           <div class="h-[1px] bg-white/10 flex-grow"></div>
         </div>
         <div class="max-w-4xl mx-auto w-full space-y-px bg-white/10 border border-white/10 overflow-hidden">
-          <a class="group flex items-center justify-between p-6 bg-[#0a0a0a] hover:bg-white/[0.03] transition-colors" href="#">
-            <div class="flex flex-col gap-1">
-              <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Oct 2023</span>
-              <h3 class="font-display text-xl text-zinc-300 group-hover:text-white transition-colors">The Aesthetic of Minimal Code</h3>
-            </div>
-            <i class="fa-solid fa-arrow-right-long text-zinc-600 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
-          </a>
-          <a class="group flex items-center justify-between p-6 bg-[#0a0a0a] hover:bg-white/[0.03] transition-colors" href="#">
-            <div class="flex flex-col gap-1">
-              <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Sep 2023</span>
-              <h3 class="font-display text-xl text-zinc-300 group-hover:text-white transition-colors">Distributed Systems for Solo Devs</h3>
-            </div>
-            <i class="fa-solid fa-arrow-right-long text-zinc-600 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
-          </a>
-          <a class="group flex items-center justify-between p-6 bg-[#0a0a0a] hover:bg-white/[0.03] transition-colors" href="#">
-            <div class="flex flex-col gap-1">
-              <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Aug 2023</span>
-              <h3 class="font-display text-xl text-zinc-300 group-hover:text-white transition-colors">Building the Obsidian Archive</h3>
-            </div>
-            <i class="fa-solid fa-arrow-right-long text-zinc-600 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
-          </a>
+          <ArticleItem
+            date="Oct 2023"
+            title="The Aesthetic of Minimal Code"
+            href="#"
+          />
+          <ArticleItem
+            date="Sep 2023"
+            title="Distributed Systems for Solo Devs"
+            href="#"
+          />
+          <ArticleItem
+            date="Aug 2023"
+            title="Building the Obsidian Archive"
+            href="#"
+          />
         </div>
         <div class="mt-8 text-center">
           <a class="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.3em] hover:text-white transition-colors" href="#">Read All Articles</a>
