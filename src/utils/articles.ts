@@ -18,7 +18,9 @@ export async function getArticles() {
     const slug = path.split('/').pop()?.replace('.typ', '') || '';
     const absolutePath = resolve('src/content/articles', `${slug}.typ`);
     const rawContent = readFileSync(absolutePath, 'utf-8');
-    const { data: rawData } = matter(rawContent);
+    // Strip Typst block comments if they wrap the frontmatter
+    const contentForMatter = rawContent.replace(/^\/\*([\s\S]*?)\*\//, '$1').trim();
+    const { data: rawData } = matter(contentForMatter);
     const data = articleSchema.parse(rawData);
     
     return {

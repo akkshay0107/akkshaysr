@@ -3,6 +3,10 @@ import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ArticleItem from '../components/ArticleItem.astro';
 import SocialButton from '../components/SocialButton.astro';
+import { getArticles } from '../utils/articles';
+
+const articles = (await getArticles())
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <Layout title="akkshay's website">
@@ -59,25 +63,16 @@ import SocialButton from '../components/SocialButton.astro';
           <div class="h-[1px] bg-white/10 flex-grow"></div>
         </div>
         <div class="max-w-4xl mx-auto w-full space-y-px bg-white/10 border border-white/10 overflow-hidden">
-          <ArticleItem
-            date="Oct 2023"
-            title="The Aesthetic of Minimal Code"
-            href="#"
-          />
-          <ArticleItem
-            date="Sep 2023"
-            title="Distributed Systems for Solo Devs"
-            href="#"
-          />
-          <ArticleItem
-            date="Aug 2023"
-            title="Building the Obsidian Archive"
-            href="#"
-          />
+          {articles.map((article) => (
+            <ArticleItem article={article} />
+          ))}
+          {articles.length === 0 && (
+            <div class="p-12 text-center bg-[#0a0a0a]">
+              <p class="text-zinc-500 font-mono text-[10px] uppercase tracking-widest">No articles found</p>
+            </div>
+          )}
         </div>
-        <div class="mt-8 text-center">
-          <a class="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.3em] hover:text-white transition-colors" href="#">Read All Articles</a>
-        </div>
+
       </section>
     </div>
   </main>

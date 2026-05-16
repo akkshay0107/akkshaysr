@@ -1,8 +1,10 @@
+/*
 ---
 title: "The Future of Minimalist Architecture"
 date: "2024-03-15"
 category: "Essays / Architecture"
 ---
+*/
 
 Minimalism in architecture has long been misunderstood as a mere aesthetic of absence. To the casual observer, it is the subtraction of ornament, the whitening of walls, and the stripping of history. However, as we look toward the next century of building, minimalism is evolving from a visual style into a functional imperative---a philosophy of permanence in an era of ephemeral consumption.
 
