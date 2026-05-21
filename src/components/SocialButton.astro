@@ -12,8 +12,9 @@ const { href, title, iconClass } = Astro.props;
   class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300 group" 
   href={href} 
   title={title} 
+  aria-label={title}
   target="_blank" 
   rel="noopener noreferrer"
 >
-  <i class={`${iconClass} text-lg`}></i>
+  <i class={`${iconClass} text-lg`} aria-hidden="true"></i>
 </a>
