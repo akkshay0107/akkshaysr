@@ -1,0 +1,78 @@
+---
+---
+
+<div class="relative group" id="project-carousel-container">
+  <!-- Navigation Buttons -->
+  <button
+    id="prev-btn"
+    class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-black/40 hover:bg-black/60 backdrop-blur-md text-white border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-300 disabled:hidden"
+    aria-label="Previous projects"
+  >
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+
+  <button
+    id="next-btn"
+    class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-black/40 hover:bg-black/60 backdrop-blur-md text-white border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-300 disabled:hidden"
+    aria-label="Next projects"
+  >
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+
+  <!-- Carousel Track -->
+  <div
+    id="carousel-track"
+    class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar"
+  >
+    <slot />
+  </div>
+</div>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  const track = document.getElementById('carousel-track');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+
+  if (track && prevBtn && nextBtn) {
+    const getScrollAmount = () => {
+      // Scroll by the width of the container
+      return track.clientWidth + 24; // width + gap
+    };
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+
+    // Optional: Hide buttons if at start or end
+    const updateButtons = () => {
+      const isAtStart = track.scrollLeft <= 0;
+      const isAtEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
+
+      prevBtn.style.opacity = isAtStart ? '0' : '';
+      prevBtn.style.pointerEvents = isAtStart ? 'none' : 'auto';
+
+      nextBtn.style.opacity = isAtEnd ? '0' : '';
+      nextBtn.style.pointerEvents = isAtEnd ? 'none' : 'auto';
+    };
+
+    track.addEventListener('scroll', updateButtons);
+    window.addEventListener('resize', updateButtons);
+
+    // Initial check
+    setTimeout(updateButtons, 100);
+  }
+</script>

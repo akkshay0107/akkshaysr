@@ -16,7 +16,7 @@ const dialogId = `dialog-${title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
 ---
 
 <div
-  class="relative group aspect-[4/3] border border-white/10 overflow-hidden hover-lift bg-zinc-900 cursor-pointer"
+  class="relative group aspect-[4/3] border border-white/10 overflow-hidden hover-lift bg-zinc-900 cursor-pointer snap-start flex-shrink-0"
   data-purpose="project-card"
   onclick={`document.getElementById('${dialogId}').showModal()`}
   role="button"
