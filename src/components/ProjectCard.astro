@@ -15,9 +15,9 @@ const { title, description, image, alt, bio, github, demo } = Astro.props;
 const dialogId = `dialog-${title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
 ---
 
-<div 
-  class="relative group aspect-[4/3] border border-white/10 overflow-hidden hover-lift bg-zinc-900 cursor-pointer" 
-  data-purpose="project-card" 
+<div
+  class="relative group aspect-[4/3] border border-white/10 overflow-hidden hover-lift bg-zinc-900 cursor-pointer"
+  data-purpose="project-card"
   onclick={`document.getElementById('${dialogId}').showModal()`}
   role="button"
   tabindex="0"
@@ -37,22 +37,22 @@ const dialogId = `dialog-${title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
     <button aria-label="Close project details" class="absolute top-6 right-6 z-50 w-10 h-10 flex items-center justify-center bg-[#0a0a0a]/40 hover:bg-[#0a0a0a]/60 backdrop-blur-xl text-white/70 hover:text-white rounded-lg transition-all duration-300 border border-white/10 hover:border-white/20 focus:outline-none shadow-xl" onclick={`document.getElementById('${dialogId}').close()`}>
       <i class="fa-solid fa-xmark" aria-hidden="true"></i>
     </button>
-    
+
     <!-- Image Header -->
     <div class="relative w-full h-[40vh] shrink-0">
       <Image alt={alt} src={image} inferSize={true} loading="lazy" decoding="async" class="w-full h-full object-cover opacity-80" />
       <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent"></div>
     </div>
-    
+
     <!-- Content Section (Pulled higher like glass) -->
     <div class="relative z-10 flex-grow flex flex-col -mt-32">
       <div class="frosted-glass border-t border-white/10 p-8 md:p-12 flex-grow flex flex-col shadow-2xl bg-[#0a0a0a]/40 backdrop-blur-xl">
          <h3 id={`${dialogId}-title`} class="text-4xl md:text-5xl font-light mb-6 text-white tracking-tight">{title}</h3>
-         
+
          <div class="font-body text-lg md:text-xl text-zinc-300 leading-relaxed mb-8 max-w-4xl space-y-4 overflow-y-auto">
            <p>{bio || description}</p>
          </div>
-         
+
          <div class="flex flex-wrap items-center gap-4 mt-2 pt-6 border-t border-white/10">
            {github && (
              <a href={github} target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-white text-black hover:bg-zinc-200 transition-colors text-[10px] uppercase font-mono tracking-widest flex items-center gap-3">
@@ -75,16 +75,16 @@ const dialogId = `dialog-${title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
-  
+
   /* Prevent scrolling on body when dialog is open */
   dialog[open] {
     animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-  
+
   dialog[open]::backdrop {
     animation: fade-in 0.4s ease-out forwards;
   }
-  
+
   @keyframes slide-up {
     from {
       opacity: 0;
@@ -95,7 +95,7 @@ const dialogId = `dialog-${title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
       transform: translateY(0) scale(1);
     }
   }
-  
+
   @keyframes fade-in {
     from {
       opacity: 0;
