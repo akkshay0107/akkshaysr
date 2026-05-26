@@ -75,6 +75,13 @@
 .article-content p {
     margin-bottom: 2rem;
 }
+.article-content .typst-frame,
+.article-content svg.typst-doc {
+    filter: invert(1);
+    display: block;
+    margin: 1.5rem auto;
+    max-width: 100%;
+}
 .article-content p:last-child {
     margin-bottom: 0;
 }

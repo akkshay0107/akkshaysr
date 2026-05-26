@@ -8,7 +8,14 @@ export default defineConfig({
   image: {
     domains: ["lh3.googleusercontent.com"],
   },
-  integrations: [typst()],
+  integrations: [
+    typst({
+      target: "html",
+      options: {
+        htmlMode: "text",
+      },
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },
