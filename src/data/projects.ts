@@ -24,7 +24,7 @@ export const projects: Project[] = [
     github: "https://github.com/akkshay0107/p0"
   },
   {
-    title: "SIFT",
+    title: "Sift",
     description: "Multimodal semantic file search tool",
     image: siftImage,
     alt: "Sift",
@@ -32,7 +32,7 @@ export const projects: Project[] = [
     github: "https://github.com/akkshay0107/sift"
   },
   {
-    title: "GLIMPSE",
+    title: "Glimpse",
     description: "AI powered newsletter automation platform",
     image: glimpseImage,
     alt: "Glimpse",
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     github: "https://github.com/sanjayriram44/glimpse"
   },
   {
-    title: "TVC LANDER",
+    title: "TVC Lander",
     description: "Rust based RL controller for rocket landing",
     image: tvcLanderImage,
     alt: "TVC lander",
@@ -49,3 +49,4 @@ export const projects: Project[] = [
     demo: "https://akkshay0107.github.io/tvc-lander/"
   }
 ];
+

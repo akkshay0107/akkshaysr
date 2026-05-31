@@ -14,6 +14,11 @@ const formattedDate = new Date(frontmatter.date).toLocaleDateString('en-US', {
   title={frontmatter.title}
   bodyClass="font-body text-body-md bg-background selection:bg-primary-container selection:text-on-primary-container text-on-surface overflow-y-auto overflow-x-hidden min-h-screen"
 >
+  <!-- Reading Progress Bar -->
+  <div class="fixed top-0 left-0 w-full h-[2px] bg-white/5 z-50 pointer-events-none" aria-hidden="true">
+    <div id="reading-progress" class="h-full bg-white w-0 transition-all duration-75 ease-out"></div>
+  </div>
+
   <main class="min-h-screen pt-12 md:pt-16 pb-24">
     <article class="max-w-max-width-article mx-auto px-margin-edge md:px-0">
       <header class="mb-stack-md">
@@ -36,4 +41,16 @@ const formattedDate = new Date(frontmatter.date).toLocaleDateString('en-US', {
       </section>
     </article>
   </main>
+
+  <script>
+    const progress = document.getElementById('reading-progress');
+    if (progress) {
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progress.style.width = `${scrollPercent}%`;
+      });
+    }
+  </script>
 </Layout>
