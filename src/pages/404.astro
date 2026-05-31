@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404: Page Not Found">
+  <main class="w-full max-w-[1600px] mx-auto min-h-screen border-x border-white/10 relative bg-[#0a0a0a] flex flex-col items-center justify-center p-6 text-center">
+    <div class="space-y-6">
+      <h1 class="text-8xl md:text-9xl font-light tracking-tight text-white/95 select-none">404</h1>
+      <div class="h-[1px] w-24 bg-white/10 mx-auto"></div>
+      <p class="font-mono text-xs uppercase tracking-[0.3em] text-zinc-500">Page Not Found</p>
+      <p class="font-body text-base text-zinc-400 max-w-md mx-auto leading-relaxed">
+        The page you are looking for doesn't exist or has been moved to a different path.
+      </p>
+      <div class="pt-6">
+        <a href="/" class="px-6 py-3 border border-white/20 text-white hover:bg-white/10 transition-colors text-[10px] uppercase font-mono tracking-widest inline-flex items-center gap-3">
+          <i class="fa-solid fa-arrow-left-long" aria-hidden="true"></i> Back to Home
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
