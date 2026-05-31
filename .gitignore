@@ -24,3 +24,6 @@ Thumbs.db
 
 # package-lock.json
 coverage/
+
+# scratch files
+scratch/
