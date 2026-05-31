@@ -13,14 +13,12 @@ const formattedDate = new Date(frontmatter.date).toLocaleDateString('en-US', {
 <Layout 
   title={frontmatter.title}
 >
-  <!-- Reading Progress Bar -->
   <div class="fixed top-0 left-0 w-full h-[2px] bg-white/5 z-50 pointer-events-none" aria-hidden="true">
     <div id="reading-progress" class="h-full bg-white w-0 transition-all duration-75 ease-out"></div>
   </div>
 
   <main>
     <article class="article wrap">
-      <!-- Sticky Left Rail -->
       <aside class="article-rail">
         <a class="back-link" href="/"><span>&larr;</span> Back to home</a>
         <div class="meta-block">
@@ -39,7 +37,6 @@ const formattedDate = new Date(frontmatter.date).toLocaleDateString('en-US', {
         </div>
       </aside>
 
-      <!-- Main Article Column -->
       <div class="article-body">
         <h1>{frontmatter.title}</h1>
         <div class="title-rule"></div>
@@ -53,12 +50,19 @@ const formattedDate = new Date(frontmatter.date).toLocaleDateString('en-US', {
   <script>
     const progress = document.getElementById('reading-progress');
     if (progress) {
+      let ticking = false;
       window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        progress.style.width = `${scrollPercent}%`;
-      });
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progress.style.width = `${scrollPercent}%`;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
     }
   </script>
 </Layout>

@@ -7,7 +7,7 @@ interface Props {
   description: string;
   image: ImageMetadata;
   alt: string;
-  tags: string;
+  tags: string[];
   monogram: string;
   bio?: string;
   github?: string;
@@ -16,6 +16,7 @@ interface Props {
 
 const { title, description, image, alt, tags, monogram, bio, github, demo } = Astro.props;
 const dialogId = `dialog-${title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
+const formattedTags = tags.join(' · ');
 ---
 
 <div
@@ -42,17 +43,15 @@ const dialogId = `dialog-${title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
     </div>
     <p class="desc">{description}</p>
   </div>
-  <span class="card-tag">{tags}</span>
+  <span class="card-tag">{formattedTags}</span>
 </div>
 
 <dialog id={dialogId} aria-labelledby={`${dialogId}-title`} class="project-dialog">
   <div class="dialog-container">
-    <!-- Close button -->
     <button aria-label="Close project details" class="dialog-close" onclick={`document.getElementById('${dialogId}').close()`}>
       <i class="fa-solid fa-xmark" aria-hidden="true"></i>
     </button>
 
-    <!-- Image Header -->
     <div class="dialog-image-wrapper">
       <Image 
         alt={alt} 
@@ -63,7 +62,6 @@ const dialogId = `dialog-${title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
       <div class="dialog-image-overlay"></div>
     </div>
 
-    <!-- Content Section -->
     <div class="dialog-body">
        <h3 id={`${dialogId}-title`}>{title}</h3>
 
@@ -88,7 +86,6 @@ const dialogId = `dialog-${title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
 </dialog>
 
 <script>
-  // Close dialog on clicking outside the dialog content (i.e. on the backdrop)
   document.querySelectorAll('dialog').forEach((dialog) => {
     dialog.addEventListener('click', (event) => {
       if (event.target === dialog) {

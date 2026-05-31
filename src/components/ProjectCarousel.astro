@@ -2,7 +2,6 @@
 ---
 
 <div class="relative group" id="project-carousel-container">
-  <!-- Navigation Buttons -->
   <button
     id="prev-btn"
     class="carousel-btn prev"
@@ -19,7 +18,6 @@
     <i class="fa-solid fa-chevron-right"></i>
   </button>
 
-  <!-- Carousel Track -->
   <div
     id="carousel-track"
     class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar"
@@ -41,7 +39,6 @@
     margin-bottom: -28px;
   }
 
-  /* Redesigned navigation buttons using design tokens */
   .carousel-btn {
     position: absolute;
     top: 50%;
@@ -94,8 +91,7 @@
 
   if (track && prevBtn && nextBtn) {
     const getScrollAmount = () => {
-      // Scroll by the width of the container
-      return track.clientWidth + 24; // width + gap
+      return track.clientWidth + 24;
     };
 
     prevBtn.addEventListener('click', () => {
@@ -106,19 +102,24 @@
       track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
     });
 
-    // Hide/disable buttons if at start or end
+    let ticking = false;
     const updateButtons = () => {
-      const isAtStart = track.scrollLeft <= 0;
-      const isAtEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const isAtStart = track.scrollLeft <= 0;
+          const isAtEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
 
-      prevBtn.disabled = isAtStart;
-      nextBtn.disabled = isAtEnd;
+          prevBtn.disabled = isAtStart;
+          nextBtn.disabled = isAtEnd;
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    track.addEventListener('scroll', updateButtons);
+    track.addEventListener('scroll', updateButtons, { passive: true });
     window.addEventListener('resize', updateButtons);
 
-    // Initial check
     setTimeout(updateButtons, 100);
   }
 </script>

@@ -22,14 +22,12 @@ export async function getArticles() {
     const slug = path.split("/").pop()?.replace(".typ", "") || "";
     const absolutePath = resolve("src/content/articles", `${slug}.typ`);
     const rawContent = readFileSync(absolutePath, "utf-8");
-    // Strip Typst block comments if they wrap the frontmatter
     const contentForMatter = rawContent
       .replace(/^\/\*([\s\S]*?)\*\//, "$1")
       .trim();
     const { data: rawData } = matter(contentForMatter);
     const parsedData = articleSchema.parse(rawData);
 
-    // Compute reading time dynamically from raw text word count
     const cleanBodyText = rawContent.replace(/^\/\*([\s\S]*?)\*\//, "").trim();
     const wordCount = cleanBodyText.split(/\s+/).filter(Boolean).length;
     const readingTime = `${Math.max(1, Math.round(wordCount / 200))} min`;
