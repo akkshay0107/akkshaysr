@@ -3,66 +3,86 @@ import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ProjectCarousel from '../components/ProjectCarousel.astro';
 import ArticleItem from '../components/ArticleItem.astro';
-import SocialButton from '../components/SocialButton.astro';
 import { getArticles } from '../utils/articles';
 import { projects } from '../data/projects';
 
 const articles = (await getArticles())
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const projectsCount = String(projects.length).padStart(2, '0');
+const articlesCount = String(articles.length).padStart(2, '0');
 ---
 
-<Layout title="akkshay's website">
-  <main class="w-full max-w-[1600px] mx-auto min-h-screen border-x border-white/10 relative flex flex-col">
-    <div class="p-6 md:p-8 lg:p-10 flex flex-col space-y-12 md:space-y-16">
-      <header class="flex flex-col space-y-8">
-        <div>
-          <h1 class="text-4xl md:text-5xl lg:text-7xl font-light mb-6 tracking-tight animate-tracking-in">Hi, I'm Akkshay</h1>
-          <div class="border border-white/10 p-5 md:p-8 bg-white/[0.02] max-w-2xl" data-purpose="bio-container">
-            <p class="text-base md:text-xl font-light leading-relaxed text-zinc-400 font-body">
-              A researcher and developer focused on high-performance systems and machine learning. Building reinforcement learning engines, multimodal search tools, and robust architectures in Rust and TypeScript.
-            </p>
+<Layout title="Akkshay — Personal Website">
+  <main id="home" data-screen-label="Home">
+    <!-- Hero Section -->
+    <section class="hero wrap">
+      <div class="hero-main">
+        <h1>Hi, I’m Akkshay</h1>
+        <p class="lede">A researcher and developer focused on <b>high-performance systems</b> and <b>machine learning</b> — building reinforcement learning engines, multimodal search tools, and robust architectures in Rust and TypeScript.</p>
+      </div>
+
+      <!-- Right Meta Rail -->
+      <aside class="rail">
+        <div class="rail-group">
+          <div class="eyebrow">Elsewhere</div>
+          <ul class="rail-list">
+            <li>
+              <a class="rail-link" href="https://github.com/akkshay0107" target="_blank" rel="noopener noreferrer">
+                GitHub <span class="arr">↗</span>
+              </a>
+            </li>
+            <li>
+              <a class="rail-link" href="https://linkedin.com/in/akkshaysr" target="_blank" rel="noopener noreferrer">
+                LinkedIn <span class="arr">↗</span>
+              </a>
+            </li>
+            <li>
+              <a class="rail-link" href="mailto:akkshaysr0107@gmail.com">
+                Email <span class="arr">↗</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Selected Work Section -->
+    <section class="section projects wrap" id="projects">
+      <div class="section-head">
+        <span class="label">Selected Work</span>
+        <span class="count">{projectsCount}</span>
+        <span class="rule"></span>
+      </div>
+      <ProjectCarousel>
+        {projects.map((project, index) => (
+          <div class="w-full md:w-[calc(33.333%-16px)] flex-shrink-0">
+            <ProjectCard 
+              {...project} 
+              monogram={String(index + 1).padStart(2, '0')} 
+            />
           </div>
-        </div>
-        <div class="flex flex-wrap gap-4" data-purpose="social-links">
-          <SocialButton href="https://github.com/akkshay0107" title="GitHub" iconClass="fa-brands fa-github" />
-          <SocialButton href="https://linkedin.com/in/akkshaysr" title="LinkedIn" iconClass="fa-brands fa-linkedin-in" />
-          <SocialButton href="mailto:akkshaysr0107@gmail.com" title="Mail" iconClass="fa-regular fa-envelope" />
-        </div>
-      </header>
+        ))}
+      </ProjectCarousel>
+    </section>
 
-      <section class="flex flex-col" id="projects-section">
-        <div class="flex items-center gap-4 mb-8">
-          <div class="h-[1px] bg-white/10 flex-grow"></div>
-          <h2 class="text-[10px] tracking-[0.5em] font-mono font-light uppercase text-zinc-500">PROJECTS</h2>
-          <div class="h-[1px] bg-white/10 flex-grow"></div>
-        </div>
-        <ProjectCarousel>
-          {projects.map((project) => (
-            <div class="w-full md:w-[calc(33.333%-16px)] flex-shrink-0">
-              <ProjectCard {...project} />
-            </div>
-          ))}
-        </ProjectCarousel>
-      </section>
-
-      <section class="flex flex-col pb-12" id="articles-section">
-        <div class="flex items-center gap-4 mb-8">
-          <div class="h-[1px] bg-white/10 flex-grow"></div>
-          <h2 class="text-[10px] tracking-[0.5em] font-mono font-light uppercase text-zinc-500">ARTICLES</h2>
-          <div class="h-[1px] bg-white/10 flex-grow"></div>
-        </div>
-        <div class="max-w-4xl mx-auto w-full space-y-px bg-white/10 border border-white/10 overflow-hidden">
-          {articles.map((article) => (
-            <ArticleItem article={article} />
-          ))}
-          {articles.length === 0 && (
-            <div class="p-12 text-center bg-[#0a0a0a]">
-              <p class="text-zinc-500 font-mono text-[10px] uppercase tracking-widest">No articles found</p>
-            </div>
-          )}
-        </div>
-
-      </section>
-    </div>
+    <!-- Writing Section -->
+    <section class="section writing wrap" id="writing">
+      <div class="section-head">
+        <span class="label">Articles</span>
+        <span class="count">{articlesCount}</span>
+        <span class="rule"></span>
+      </div>
+      <div class="post-list">
+        {articles.map((article) => (
+          <ArticleItem article={article} />
+        ))}
+        {articles.length === 0 && (
+          <div class="p-12 text-center bg-[#111114] border border-white/5 rounded">
+            <p class="text-zinc-500 font-mono text-[10px] uppercase tracking-widest">No articles found</p>
+          </div>
+        )}
+      </div>
+    </section>
   </main>
 </Layout>

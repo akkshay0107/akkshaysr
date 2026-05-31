@@ -9,7 +9,9 @@ const articleSchema = z.object({
   category: z.string().optional(),
 });
 
-export type ArticleData = z.infer<typeof articleSchema>;
+export type ArticleData = z.infer<typeof articleSchema> & {
+  readingTime: string;
+};
 
 export async function getArticles() {
   const articles = import.meta.glob("../content/articles/*.typ", {
@@ -25,7 +27,17 @@ export async function getArticles() {
       .replace(/^\/\*([\s\S]*?)\*\//, "$1")
       .trim();
     const { data: rawData } = matter(contentForMatter);
-    const data = articleSchema.parse(rawData);
+    const parsedData = articleSchema.parse(rawData);
+
+    // Compute reading time dynamically from raw text word count
+    const cleanBodyText = rawContent.replace(/^\/\*([\s\S]*?)\*\//, "").trim();
+    const wordCount = cleanBodyText.split(/\s+/).filter(Boolean).length;
+    const readingTime = `${Math.max(1, Math.round(wordCount / 200))} min`;
+
+    const data: ArticleData = {
+      ...parsedData,
+      readingTime,
+    };
 
     return {
       slug,
