@@ -10,6 +10,7 @@ export interface Project {
   image: ImageMetadata;
   alt: string;
   tags: string[];
+  tools: string[];
   bio?: string;
   github?: string;
   demo?: string;
@@ -21,8 +22,9 @@ export const projects: Project[] = [
     description: "Self play RL engine for Pokemon VGC",
     image: p0Image,
     alt: "P0",
-    tags: ["RL", "Rust"],
-    bio: "P0 is a high-performance reinforcement learning engine designed specifically for Pokemon VGC. It implements state-of-the-art RL algorithms to model complex decision-making in competitive environments, providing a framework for training and evaluating agents at scale. Built with a focus on speed and accuracy, P0 enables deep exploration of meta-game strategies and tactical positioning.",
+    tags: ["RL", "SLM"],
+    tools: ["PyTorch", "GCP", "Docker"],
+    bio: "",
     github: "https://github.com/akkshay0107/p0",
   },
   {
@@ -30,7 +32,8 @@ export const projects: Project[] = [
     description: "Multimodal semantic file search tool",
     image: siftImage,
     alt: "Sift",
-    tags: ["Search", "TS"],
+    tags: ["RAG", "VLM"],
+    tools: ["HuggingFace", "Qdrant", "SLURM", "PyTorch"],
     bio: "Sift is a multimodal search tool that enables semantic discovery across local files. By leveraging advanced embeddings, it allows users to search through images, documents, and code using natural language, making file organization and retrieval effortless. It runs locally, ensuring privacy while providing a powerful interface for managing personal data.",
     github: "https://github.com/akkshay0107/sift",
   },
@@ -39,7 +42,8 @@ export const projects: Project[] = [
     description: "AI powered newsletter automation platform",
     image: glimpseImage,
     alt: "Glimpse",
-    tags: ["AI", "Platform"],
+    tags: ["AI", "SaaS"],
+    tools: ["LangChain", "Celery", "Redis", "Next.js", "Supabase", "Gemini"],
     bio: "Glimpse automates the creation and distribution of AI-curated newsletters. It processes vast amounts of information to identify high-signal content, summarizing it into beautiful, readable formats for subscribers. The platform streamlines the editorial workflow, allowing creators to focus on high-level curation while AI handles the heavy lifting.",
     github: "https://github.com/sanjayriram44/glimpse",
   },
@@ -48,8 +52,9 @@ export const projects: Project[] = [
     description: "Rust based RL controller for rocket landing",
     image: tvcLanderImage,
     alt: "TVC lander",
-    tags: ["RL", "Rust"],
-    bio: "A thrust vector control (TVC) simulation and controller implemented in Rust. It utilizes reinforcement learning to stabilize and land model rockets, demonstrating the power of systems programming in real-time control applications. The project includes a high-fidelity physics simulation environment for training agents to handle various atmospheric conditions and landing scenarios.",
+    tags: ["Rust", "RL"],
+    tools: ["Rayon", "ONNX", "PyO3", "PyTorch", "WASM"],
+    bio: "A neural network based controller for landing rockets smoothly. The rocket is controlled using thrust vector controls (TVC) with continuous outputs for thrust and gimbal angles. I also built an efficient, parallelized physics sim environment using rayon and SIMD. PyO3 is used to build FFI bindings to expose the Rust environment to Python with a gym style API. The model is then trained using PPO using curriculum training to speed up convergence. The model is exported and optimized for inference in ONNX for inference on the web using WASM through Rust.",
     github: "https://github.com/akkshay0107/tvc-lander",
     demo: "https://akkshay0107.github.io/tvc-lander/",
   },

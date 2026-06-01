@@ -680,6 +680,40 @@ dialog.project-dialog[open]::backdrop {
 .dialog-text p {
     margin: 0 0 1em;
 }
+.dialog-tools {
+    margin-top: 10px;
+    margin-bottom: 24px;
+}
+.dialog-tools-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+    display: block;
+    margin-bottom: 8px;
+}
+.dialog-tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.dialog-tool-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    background: var(--bg-panel-2);
+    border: 1px solid var(--line-soft);
+    color: var(--fg-dim);
+    padding: 4px 10px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+.dialog-tool-tag:hover {
+    color: var(--accent);
+    border-color: var(--accent-dim);
+    background: rgba(255, 255, 255, 0.02);
+}
 .dialog-footer {
     display: flex;
     flex-wrap: wrap;

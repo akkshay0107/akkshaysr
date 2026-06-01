@@ -9,12 +9,13 @@ interface Props {
   alt: string;
   tags: string[];
   monogram: string;
+  tools?: string[];
   bio?: string;
   github?: string;
   demo?: string;
 }
 
-const { title, description, image, alt, tags, monogram, bio, github, demo } = Astro.props;
+const { title, description, image, alt, tags, monogram, tools = [], bio, github, demo } = Astro.props;
 const dialogId = `dialog-${title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
 const formattedTags = tags.join(' · ');
 ---
@@ -68,6 +69,17 @@ const formattedTags = tags.join(' · ');
        <div class="dialog-text">
          <p>{bio || description}</p>
        </div>
+
+       {tools.length > 0 && (
+         <div class="dialog-tools">
+           <span class="dialog-tools-label">Built with:</span>
+           <div class="dialog-tools-list">
+             {tools.map((tool) => (
+               <span class="dialog-tool-tag">{tool}</span>
+             ))}
+           </div>
+         </div>
+       )}
 
        <div class="dialog-footer">
          {github && (
