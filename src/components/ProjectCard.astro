@@ -7,7 +7,6 @@ interface Props {
   description: string;
   image: ImageMetadata;
   alt: string;
-  tags: string[];
   monogram: string;
   tools?: string[];
   bio?: string;
@@ -15,9 +14,8 @@ interface Props {
   demo?: string;
 }
 
-const { title, description, image, alt, tags, monogram, tools = [], bio, github, demo } = Astro.props;
+const { title, description, image, alt, monogram, tools = [], bio, github, demo } = Astro.props;
 const dialogId = `dialog-${title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}`;
-const formattedTags = tags.join(' · ');
 ---
 
 <div
@@ -44,7 +42,6 @@ const formattedTags = tags.join(' · ');
     </div>
     <p class="desc">{description}</p>
   </div>
-  <span class="card-tag">{formattedTags}</span>
 </div>
 
 <dialog id={dialogId} aria-labelledby={`${dialogId}-title`} class="project-dialog">
