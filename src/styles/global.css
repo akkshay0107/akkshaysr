@@ -5,16 +5,16 @@
     --font-serif: "Newsreader", Georgia, serif;
     --font-mono: "Space Mono", monospace;
 
-    --bg: #0a0a0c;
-    --bg-panel: #111114;
-    --bg-panel-2: #16161a;
+    --bg: #04091a;
+    --bg-panel: #0a1128;
+    --bg-panel-2: #121a36;
     --fg: #eceae6;
-    --fg-dim: #9b9b98;
-    --fg-faint: #67676a;
+    --fg-dim: #b5b3b0;
+    --fg-faint: #78787c;
     --line: rgba(255, 255, 255, 0.09);
     --line-soft: rgba(255, 255, 255, 0.05);
 
-    --accent: oklch(0.72 0.1 286);
+    --accent: oklch(0.67 0.15 57);
     --accent-dim: color-mix(in oklch, var(--accent) 20%, transparent);
 
     --pattern-opacity: 0.18;
@@ -81,7 +81,7 @@ body::before {
     letter-spacing: 0.14em;
     white-space: pre;
     color: #888888;
-    opacity: 1.0;
+    opacity: 1;
     transition: opacity 0.35s ease;
 }
 
@@ -150,7 +150,7 @@ body::before {
     font-size: clamp(19px, 1.5vw, 23px);
     line-height: 1.62;
     color: var(--fg-dim);
-    max-width: 30ch;
+    max-width: 50ch;
     margin: 0;
     font-weight: 300;
 }
@@ -263,8 +263,8 @@ body::before {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(1) brightness(0.7) contrast(1.1);
-    opacity: 0.7;
+    opacity: 0.8;
+    filter: brightness(0.7);
     transition:
         transform 0.3s ease,
         opacity 0.3s ease,
@@ -272,8 +272,8 @@ body::before {
 }
 .card:hover .project-card-image {
     transform: scale(1.03);
-    opacity: 0.95;
-    filter: none;
+    opacity: 1;
+    filter: brightness(1);
 }
 
 .card-body {
@@ -581,7 +581,7 @@ dialog.project-dialog[open]::backdrop {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(10, 10, 12, 0.5);
+    background: color-mix(in oklch, var(--bg) 50%, transparent);
     backdrop-filter: blur(8px);
     color: var(--fg-dim);
     border: 1px solid var(--line-soft);
@@ -592,7 +592,7 @@ dialog.project-dialog[open]::backdrop {
 .dialog-close:hover {
     color: var(--fg);
     border-color: var(--line);
-    background: rgba(10, 10, 12, 0.8);
+    background: color-mix(in oklch, var(--bg) 80%, transparent);
 }
 .dialog-image-wrapper {
     position: relative;
@@ -612,7 +612,7 @@ dialog.project-dialog[open]::backdrop {
     background: linear-gradient(
         to top,
         var(--bg-panel) 0%,
-        rgba(17, 17, 20, 0.4) 70%,
+        color-mix(in oklch, var(--bg-panel) 40%, transparent) 70%,
         transparent 100%
     );
 }
