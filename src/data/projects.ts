@@ -22,7 +22,7 @@ export const projects: Project[] = [
     image: p0Image,
     alt: "P0",
     tools: ["PyTorch", "poke-env", "GCP", "Docker"],
-    bio: "An attempt at making a RL agent that can play Pokemon Champions (on a limited metagame) without using any human replays. The model is trained purely through heuristics and self play. In the process, I've built a custom model involving a tokenizer converting elements of a Pokemon battle into tokens, a SwiGLU based transformer layer, BERT style encoder only stack with CLS, recurrent memory tokens and an autoregressive policy head. The training loop follows a hybrid of league style training and self play, borrowing ideas from the AlphaStar, OpenAI Five and VGC-Bench paper. I've also spent time performance engineering - profiling with cProfile, layer fusion, pinned memory, subproc based async parallel envs to boost throughput in training. More to come.",
+    bio: "An attempt at making a RL agent that can play Pokemon Champions (on a limited metagame) without using any human replays. The model is trained purely through heuristics and self play. In the process, I've built a custom model involving a tokenizer converting elements of a Pokemon battle into tokens, a SwiGLU based transformer layer, BERT style encoder only stack with CLS, recurrent memory tokens and an autoregressive policy head. The training loop follows a hybrid of league style training and self play, borrowing ideas from the AlphaStar, OpenAI Five and VGC-Bench paper. I've also spent time performance engineering - profiling with cProfile, layer fusion, query coalescing, pinned memory, subproc based parallel envs - to boost throughput (and reduce cost) of training. More to come.",
     github: "https://github.com/akkshay0107/p0",
   },
   {
