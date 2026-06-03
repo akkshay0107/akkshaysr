@@ -47,7 +47,7 @@ const articlesCount = String(articles.length).padStart(2, '0');
           <div class="eyebrow">Resume</div>
           <ul class="rail-list">
             <li>
-              <a class="rail-link" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <a class="rail-link" href={`${import.meta.env.BASE_URL}resume.pdf`} target="_blank" rel="noopener noreferrer">
                 View PDF <span class="arr">↗</span>
               </a>
             </li>

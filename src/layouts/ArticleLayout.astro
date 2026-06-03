@@ -21,7 +21,7 @@ const formattedDate = new Date(frontmatter.date).toLocaleDateString('en-US', {
   <main>
     <article class="article wrap">
       <aside class="article-rail">
-        <a class="back-link" href="/"><span>&larr;</span> Back to home</a>
+        <a class="back-link" href={import.meta.env.BASE_URL}><span>&larr;</span> Back to home</a>
         <div class="meta-block">
           <div class="meta-item">
             <div class="k">Published</div>
