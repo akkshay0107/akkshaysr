@@ -315,6 +315,7 @@ body::before {
     flex-direction: column;
 }
 .post-row {
+    position: relative;
     display: grid;
     grid-template-columns: 150px minmax(0, 1fr) auto;
     align-items: baseline;
@@ -323,16 +324,28 @@ body::before {
     border-top: 1px solid var(--line-soft);
     text-decoration: none;
     color: inherit;
-    transition:
-        padding-left 0.22s ease,
-        background 0.22s ease;
+    transition: padding-left 0.22s ease;
+}
+.post-row::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 26px;
+    bottom: 26px;
+    width: 2px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform 0.22s ease;
 }
 .post-list .post-row:last-child {
     border-bottom: 1px solid var(--line-soft);
 }
+.post-row:hover::before {
+    transform: scaleY(1);
+}
 .post-row:hover {
     padding-left: 18px;
-    background: linear-gradient(90deg, var(--accent-dim), transparent 40%);
 }
 .post-row .date {
     font-family: var(--font-mono);
@@ -633,10 +646,10 @@ dialog.project-dialog[open]::backdrop {
     border-top: 1px solid var(--line-soft);
 }
 .dialog-body h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-weight: 500;
-    font-size: clamp(28px, 4vw, 44px);
-    letter-spacing: -0.015em;
+    font-size: clamp(24px, 3.2vw, 38px);
+    letter-spacing: -0.01em;
     margin: 0 0 20px;
     color: var(--fg);
 }

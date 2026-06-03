@@ -74,22 +74,19 @@ const articlesCount = String(articles.length).padStart(2, '0');
       </ProjectCarousel>
     </section>
 
-    <section class="section writing wrap" id="writing">
-      <div class="section-head">
-        <span class="label">Articles</span>
-        <span class="count">{articlesCount}</span>
-        <span class="rule"></span>
-      </div>
-      <div class="post-list">
-        {articles.map((article) => (
-          <ArticleItem article={article} />
-        ))}
-        {articles.length === 0 && (
-          <div class="p-12 text-center bg-[var(--bg-panel)] border border-[var(--line-soft)] rounded">
-            <p class="text-zinc-500 font-mono text-[10px] uppercase tracking-widest">No articles found</p>
-          </div>
-        )}
-      </div>
-    </section>
+    {articles.length > 0 && (
+      <section class="section writing wrap" id="writing">
+        <div class="section-head">
+          <span class="label">Articles</span>
+          <span class="count">{articlesCount}</span>
+          <span class="rule"></span>
+        </div>
+        <div class="post-list">
+          {articles.map((article) => (
+            <ArticleItem article={article} />
+          ))}
+        </div>
+      </section>
+    )}
   </main>
 </Layout>

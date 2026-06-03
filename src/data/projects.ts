@@ -9,7 +9,6 @@ export interface Project {
   description: string;
   image: ImageMetadata;
   alt: string;
-  tags: string[];
   tools: string[];
   bio?: string;
   github?: string;
@@ -22,8 +21,8 @@ export const projects: Project[] = [
     description: "Self play RL engine for Pokemon VGC",
     image: p0Image,
     alt: "P0",
-    tools: ["PyTorch", "GCP", "Docker"],
-    bio: "",
+    tools: ["PyTorch", "poke-env", "GCP", "Docker"],
+    bio: "An attempt at making a RL agent that can play Pokemon Champions (on a limited metagame) without using any human replays. The model is trained purely through heuristics and self play. In the process, I've built a custom model involving a tokenizer converting elements of a Pokemon battle into tokens, a SwiGLU based transformer layer, BERT style encoder only stack with CLS, recurrent memory tokens and an autoregressive policy head. The training loop follows a hybrid of league style training and self play, borrowing ideas from the AlphaStar, OpenAI Five and VGC-Bench paper. I've also spent time performance engineering - profiling with cProfile, layer fusion, pinned memory, subproc based async parallel envs to boost throughput in training. More to come.",
     github: "https://github.com/akkshay0107/p0",
   },
   {
@@ -31,8 +30,8 @@ export const projects: Project[] = [
     description: "Multimodal semantic file search tool",
     image: siftImage,
     alt: "Sift",
-    tools: ["HuggingFace", "Qdrant", "SLURM"],
-    bio: "Sift is a multimodal search tool that enables semantic discovery across local files. By leveraging advanced embeddings, it allows users to search through images, documents, and code using natural language, making file organization and retrieval effortless. It runs locally, ensuring privacy while providing a powerful interface for managing personal data.",
+    tools: ["HuggingFace", "Qdrant", "SLURM", "Whisper", "PyTorch"],
+    bio: "The idea behind this was to build a more powerful, multimodal, cross platform Spotlight. We use the Qwen3-VL embedding to embed the contents of files into a Qdrant vector database. A daemon (with watchdog) is spawned to index files in the background, incrementally syncing them on file changes. To add support for audio files, we trained an audio embedding model using constrative loss on an HPC cluster using SLURM and Pytorch. The model used a CLAP backbone with projection head to align with Qwen3 embeddings. Retrieval of files used a hybrid approach, mixing vector search, metadata matching and alternate paths (OCR for images and Whisper transcription for audio) to rank results in relevancy. Bonus: it runs entirely locally!",
     github: "https://github.com/akkshay0107/sift",
   },
   {
@@ -40,8 +39,8 @@ export const projects: Project[] = [
     description: "AI powered newsletter automation platform",
     image: glimpseImage,
     alt: "Glimpse",
-    tools: ["LangChain", "Celery", "Redis"],
-    bio: "Glimpse automates the creation and distribution of AI-curated newsletters. It processes vast amounts of information to identify high-signal content, summarizing it into beautiful, readable formats for subscribers. The platform streamlines the editorial workflow, allowing creators to focus on high-level curation while AI handles the heavy lifting.",
+    tools: ["LangChain", "Celery", "Redis", "Next.js", "Supabase"],
+    bio: "Glimpse was built to declutter the inbox by centralizing newsletter subscriptions into a single platform. The platform itself is built with Next.js, FastAPI and Supabase. A LangChain agent (with Gemini) is used to batch process emails, creating daily summaries and conversational scripts, which are fed to ElevenLabs to deliver newsletter content in a podcast style digest. To make the platform support a larger userbase, we use Celery for async processing and scheduling daily tasks, and Redis as a message broker. We also built a token monitoring pipeline to track LLM operational costs, and used S3 to cache expensive audio generation results.",
     github: "https://github.com/sanjayriram44/glimpse",
   },
   {
@@ -49,8 +48,8 @@ export const projects: Project[] = [
     description: "Rust based RL controller for rocket landing",
     image: tvcLanderImage,
     alt: "TVC lander",
-    tools: ["WASM", "ONNX", "PyTorch"],
-    bio: "A neural network based controller for landing rockets smoothly. The rocket is controlled using thrust vector controls (TVC) with continuous outputs for thrust and gimbal angles. I also built an efficient, parallelized physics sim environment using rayon and SIMD. PyO3 is used to build FFI bindings to expose the Rust environment to Python with a gym style API. The model is then trained using PPO using curriculum training to speed up convergence. The model is exported and optimized for inference in ONNX for inference on the web using WASM through Rust.",
+    tools: ["rayon", "ONNX", "PyTorch", "WASM"],
+    bio: "This project was built so that I could have a playground of sorts to test a bunch of continuous output RL ideas. The physics simulation is built in Rust with rapier-2d, using rayon to distribute computation across multiple threads (which allows for a vectorized environment running multiple sims in parallel). The physics sim is exposed to Python code by building FFI bindings for a gym style API using PyO3. The controller is built in Pytorch and uses curriculum learning and PPO to learn smoother landing trajectories. The model is exported and optimized for inference using ONNX. Using ONNX also allows for inference in Rust which is used in the web demo (by compiling to WASM).",
     github: "https://github.com/akkshay0107/tvc-lander",
     demo: "https://akkshay0107.github.io/tvc-lander/",
   },
